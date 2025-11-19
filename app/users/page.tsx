@@ -7,6 +7,14 @@ export default function UsersPage() {
   const [users, setusers] = useState<usersData[]>([]);
 
   async function getUsers() {
+    const res = await fetch("/api/test", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    alert(res);
+
     const usr = await Table.users.getData([
       { terms: { id_users: 0 }, condition: ">" },
     ]);

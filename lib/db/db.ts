@@ -12,9 +12,9 @@ export interface TableData {
   Name?: string;
   fields?: TableFieldData[];
 }
-//export const db = mysql.createPool(`${process.env.MYSQL_DATABASE_URL}`);
+export const db = mysql.createPool(`${process.env.MYSQL_DATABASE_URL}`);
 
-export async function Query(sql: string, values: unknown[]) {
+export async function testdb() {
   const test = await mysql.createConnection({
     host: "77.245.159.22",
     user: "prcomtr_bts",
@@ -26,7 +26,9 @@ export async function Query(sql: string, values: unknown[]) {
   console.log("Connected to MySQL Database!");
 
   test.end();
-  /*
+  return true;
+}
+export async function Query(sql: string, values: unknown[]) {
   const conn = await db.getConnection();
   try {
     const [results] = await conn.query(sql, values);
@@ -37,7 +39,7 @@ export async function Query(sql: string, values: unknown[]) {
     throw new Error((err as Error).message);
   } finally {
     conn.release();
-  }*/
+  }
 }
 
 export async function ExecQuery(sql: string, values: unknown[]) {
