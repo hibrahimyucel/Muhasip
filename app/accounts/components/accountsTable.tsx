@@ -164,7 +164,7 @@ export default function AccountsTable({
   useEffect(() => {
     getData();
   }, []);
-
+  console.log(accLocalFilters);
   return (
     <>
       {/** start Database filter */}

@@ -12,9 +12,21 @@ export interface TableData {
   Name?: string;
   fields?: TableFieldData[];
 }
-export const db = mysql.createPool(`${process.env.MYSQL_DATABASE_URL}`);
+//export const db = mysql.createPool(`${process.env.MYSQL_DATABASE_URL}`);
 
 export async function Query(sql: string, values: unknown[]) {
+  const test = await mysql.createConnection({
+    host: "77.245.159.22",
+    user: "prcomtr_bts",
+    password: "pr2198001980",
+  });
+
+  // Connect to the database
+  await test.connect();
+  console.log("Connected to MySQL Database!");
+
+  test.end();
+  /*
   const conn = await db.getConnection();
   try {
     const [results] = await conn.query(sql, values);
@@ -25,7 +37,7 @@ export async function Query(sql: string, values: unknown[]) {
     throw new Error((err as Error).message);
   } finally {
     conn.release();
-  }
+  }*/
 }
 
 export async function ExecQuery(sql: string, values: unknown[]) {
@@ -39,6 +51,7 @@ export async function ExecQuery(sql: string, values: unknown[]) {
   warningStatus: 0,
   changedRows: 0
 } */
+  /*
   const conn = await db.getConnection();
   try {
     const [results] = await conn.execute(sql, values);
@@ -50,5 +63,5 @@ export async function ExecQuery(sql: string, values: unknown[]) {
     throw new Error((err as Error).message);
   } finally {
     conn.release();
-  }
+  }*/
 }
